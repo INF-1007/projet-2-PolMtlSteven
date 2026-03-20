@@ -43,9 +43,11 @@ def main():
                 if event.key == pygame.K_SPACE:
                     course_commencee = True
 
-        # TODO : Gérer le début de la course en appelant la méthode `accelerer` des véhicules
-        # Si le véhicule franchit la ligne et qu’on n’a pas encore de gagnant, on le note
-
+        if course_commencee:
+            for vehic in liste_vehic:
+                vehic.accelerer(dt)
+                if vehic.get_position()[0] >= FINISH_LINE_X and gagnant is None:
+                    gagnant = vehic
 
         for vehic in liste_vehic:
             vehic.affichage_vehicule(screen)
@@ -56,7 +58,9 @@ def main():
                               True, (0, 0, 0))
             screen.blit(txt, (350, 35))
 
-        # TODO: Si on a un gagnant, afficher le message qui indique le véhicule gagnant avec la méthode `celebrer` 
+        if gagnant is not None:
+            txt = font.render(gagnant.celebrer(), True, (0, 0, 0))
+            screen.blit(txt, (350, 35))
         
 
         pygame.display.flip()
