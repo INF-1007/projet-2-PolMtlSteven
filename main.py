@@ -18,8 +18,12 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont(None, 24)
 
-    # TODO : Créer une liste de véhicules qui contient une instance pour chaque
-    # type de véhicule : une moto, une auto et un camion
+    moto1 = Moto("Le Rangeur Grognant", (START_LINE_X, START_MOTO_Y)) 
+    auto1 = Auto("Le Sordide Assomeur", (START_LINE_X, START_AUTO_Y))
+    cam1 = Camion("Le Porridgeur à Porridger", (START_LINE_X, START_CAMION_Y))
+
+    liste_vehic = [moto1, auto1, cam1]
+
 
     running = True
     course_commencee = False
