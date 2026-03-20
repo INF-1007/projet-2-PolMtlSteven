@@ -7,7 +7,12 @@ from moteur import Moteur
 from chassis import Chassis
 
 class Auto(Vehicule):
+    auto_roue = Roue(AutoSpecs.roue_nom, AutoSpecs.roue_poids, AutoSpecs.roue_friction, AutoSpecs.roue_support)
+    auto_roues = (auto_roue, auto_roue, auto_roue, auto_roue)
+    auto_moteur = Moteur(AutoSpecs.moteur_nom, AutoSpecs.moteur_poids, AutoSpecs.moteur_acceleration)
+    auto_chassis = Chassis(AutoSpecs.chassis_nom, AutoSpecs.chassis_poids, AutoSpecs.chassis_aire, AutoSpecs.chassis_trainee)
+    image_path = "images/auto.png"
 
-    pass # à enlever
-
-    # TODO : Compléter la classe
+    def __init__(self, nom, position_dep):
+        super().__init__(nom, position_dep, type(self).auto_roues, type(self).auto_moteur, 
+                         type(self).auto_chassis, AutoSpecs, type(self).image_path)
