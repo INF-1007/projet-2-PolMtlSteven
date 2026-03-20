@@ -5,3 +5,6 @@ class Roue(Composante):
         super().__init__(nom, poids)
         self.__coefficient_friction = coefficient_friction
         self.__poids_supporte = poids_supporte
+
+    def get_coeff_fric(self):
+        return self.__coefficient_friction

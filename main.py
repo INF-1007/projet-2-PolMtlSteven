@@ -47,7 +47,8 @@ def main():
         # Si le véhicule franchit la ligne et qu’on n’a pas encore de gagnant, on le note
 
 
-        # TODO : Pour chaque véhicule, appeler la méthode `affichage_vehicule`
+        for vehic in liste_vehic:
+            vehic.affichage_vehicule(screen)
         
 
         if not course_commencee and gagnant is None:
