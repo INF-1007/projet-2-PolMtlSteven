@@ -1,5 +1,7 @@
 class Composante:
     
-    pass # à enlever
+    def __init__(self, nom, poids):
+        self._nom = nom
+        self._poids = poids
 
-    # TODO: Compléter la classe
+    # TODO: Ajouter getters/setters si nécessaire plus tard
