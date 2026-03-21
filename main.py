@@ -18,8 +18,15 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont(None, 24)
 
-    # TODO : Créer une liste de véhicules qui contient une instance pour chaque
-    # type de véhicule : une moto, une auto et un camion
+    moto1 = Moto("Le Rangeur Grognant", (START_LINE_X, START_MOTO_Y)) 
+    auto1 = Auto("Le Sordide Assomeur", (START_LINE_X, START_AUTO_Y))
+    cam1 = Camion("Le Porridgeur à Porridger", (START_LINE_X, START_CAMION_Y))
+
+    liste_vehic = [moto1, auto1, cam1]
+    confettis = []
+
+    for i in range(100):
+        confettis.append(Confetti())
 
     running = True
     course_commencee = False
@@ -39,11 +46,14 @@ def main():
                 if event.key == pygame.K_SPACE:
                     course_commencee = True
 
-        # TODO : Gérer le début de la course en appelant la méthode `accelerer` des véhicules
-        # Si le véhicule franchit la ligne et qu’on n’a pas encore de gagnant, on le note
+        if course_commencee:
+            for vehic in liste_vehic:
+                vehic.accelerer(dt)
+                if vehic.get_position()[0] >= FINISH_LINE_X and gagnant is None:
+                    gagnant = vehic
 
-
-        # TODO : Pour chaque véhicule, appeler la méthode `affichage_vehicule`
+        for vehic in liste_vehic:
+            vehic.affichage_vehicule(screen)
         
 
         if not course_commencee and gagnant is None:
@@ -51,7 +61,14 @@ def main():
                               True, (0, 0, 0))
             screen.blit(txt, (350, 35))
 
-        # TODO: Si on a un gagnant, afficher le message qui indique le véhicule gagnant avec la méthode `celebrer` 
+        if gagnant is not None:
+            txt = font.render(gagnant.celebrer(), True, (0, 0, 0))
+            screen.blit(txt, (350, 35))
+            for conf in confettis:
+                conf.tomber()
+                conf.afficher_confetti(screen) 
+                if conf.get_forme().y >= WIDTH:
+                    confettis.remove(conf)
         
 
         pygame.display.flip()
