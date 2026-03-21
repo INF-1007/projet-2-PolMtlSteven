@@ -23,7 +23,10 @@ def main():
     cam1 = Camion("Le Porridgeur à Porridger", (START_LINE_X, START_CAMION_Y))
 
     liste_vehic = [moto1, auto1, cam1]
+    confettis = []
 
+    for i in range(100):
+        confettis.append(Confetti())
 
     running = True
     course_commencee = False
@@ -61,6 +64,11 @@ def main():
         if gagnant is not None:
             txt = font.render(gagnant.celebrer(), True, (0, 0, 0))
             screen.blit(txt, (350, 35))
+            for conf in confettis:
+                conf.tomber()
+                conf.afficher_confetti(screen) 
+                if conf.get_forme().y >= WIDTH:
+                    confettis.remove(conf)
         
 
         pygame.display.flip()

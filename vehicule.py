@@ -18,7 +18,6 @@ class Vehicule:
     
     def affichage_vehicule(self, screen):
         screen.blit(self.image, self.__position)
-        #pygame.display.update()
     
     def calculer_poids_total(self):
         return sum(roue.get_poids() for roue in self.__roues) + self.__chassis.get_poids() + self.__moteur.get_poids()
